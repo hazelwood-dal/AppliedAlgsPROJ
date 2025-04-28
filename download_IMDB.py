@@ -84,18 +84,6 @@ def build_large_text(reviews, target_length):
 def create_cross_matrix_inputs(reviews, vocab, text_size_ranges, pattern_size_words):
     inputs = []
 
-    # text_size_ranges = {
-    #     'small': (4500, 5500),
-    #     'medium': (9500, 10500),
-    #     'large': (45000, 55000)
-    # }
-    #
-    # pattern_size_words = {
-    #     'small': (1, 1),
-    #     'medium': (3, 4),
-    #     'large': (5, 7)
-    # }
-
     # Prepare texts of different sizes
     texts = {'small': [], 'medium': [], 'large': []}
 
@@ -107,7 +95,7 @@ def create_cross_matrix_inputs(reviews, vocab, text_size_ranges, pattern_size_wo
             chosen = random.choice(suitable_reviews)
             trimmed = chosen[:target_length]
         else:
-            # Not enough long reviews? Build a big text
+            # Build Long review if needed
             trimmed = build_large_text(reviews, target_length)
 
         texts[size] = trimmed
@@ -123,7 +111,7 @@ def create_cross_matrix_inputs(reviews, vocab, text_size_ranges, pattern_size_wo
 
             # Insert pattern randomly into text
             insert_pos = random.randint(0, len(text))
-            modified_text = text[:insert_pos] + " " + pattern + " " + text[insert_pos:]
+            modified_text = f'{text[:insert_pos]} {pattern} {text[insert_pos:]}'
 
             inputs.append(
                 {'pattern_size': pattern_size, 'text_size': text_size, 'text': modified_text, 'pattern': pattern})

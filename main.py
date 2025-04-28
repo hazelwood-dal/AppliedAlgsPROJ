@@ -8,7 +8,6 @@ from boyer_moore import bm_search
 from download_IMDB import create_cross_matrix_inputs, load_reviews
 from horspool import horspool_search
 
-# --- Settings ---
 
 text_size_ranges = {'small': (900, 1100), 'medium': (9500, 10500), 'large': (99500, 100500)}
 
@@ -17,17 +16,12 @@ pattern_size_words = {'small': (1, 1), 'medium': (3, 4), 'large': (5, 7)}
 num_iterations = 1000
 
 
-# --- Functions ---
-
 def is_correct_match(text, pattern, pos):
     return (pos != -1) and (text[pos:pos + len(pattern)] == pattern)
 
 
-# --- Load IMDB Dataset ---
-
 reviews, vocab = load_reviews()
 
-# --- Main Experiment ---
 
 all_results = []
 
@@ -58,7 +52,6 @@ for _ in tqdm(range(num_iterations), desc="Running IMDB Experiments"):
         all_results.append({'Pattern Size': pattern_size, 'Text Size': text_size, 'Horspool Found': horspool_correct,
             'Boyer-Moore Found': bm_correct, 'Horspool Time (ns)': horspool_time_ns, 'BM Time (ns)': bm_time_ns})
 
-# --- Results Processing ---
 
 df_results = pd.DataFrame(all_results)
 df_results['Test Case'] = df_results['Pattern Size'] + ' pattern / ' + df_results['Text Size'] + ' text'
