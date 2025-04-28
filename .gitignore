@@ -1,0 +1,6 @@
+*.csv
+*.png
+datasets
+.idea
+.venv
+__pycache__

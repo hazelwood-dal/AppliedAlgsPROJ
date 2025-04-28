@@ -35,17 +35,17 @@ First run ```python3 main.py```. This will download the imdb dataset and extract
 This will also run the analysis for the imdb dataset.
 ```bash
 # Run IMDB experiments
-python3 main.py
+python main.py
 ```
 To run a prelimenary test on synthetic data: run ```python3 main_synthetic.py```.
 ```bash
 # Run synthetic experiments
-python3 main_synthetic.py
+python main_synthetic.py
 ```
 To run an analysis for noise on syntheticly generated data: run ```python3 synthetic_noise_experiment.py```.
 ```bash
 # Run synthetic noise experiment
-python3 synthetic_noise_experiment.py
+python synthetic_noise_experiment.py
 ```
 
 
